@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+CREDS=`curl -s "$OS_AUTH_URL/tokens" -X POST -H "Content-Type: application/json" -H "Accept: application/json" -d "{\"auth\": {\"tenantName\": \"$OS_TENANT_NAME\", \"passwordCredentials\": {\"username\": \"$OS_USERNAME\", \"password\": \"$OS_PASSWORD\"}}}"`
+
+TOKEN=`echo $CREDS | cut -d'"' -f 16`
+TENANT_ID=`echo $CREDS | cut -d'"' -f 30`
+ENDPOINT=`echo $CREDS | cut -d'"' -f 54`

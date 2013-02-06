@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+source helper.curl
+
+KEYPAIRS=`curl -s "$ENDPOINT/os-keypairs" -X GET -H "Accept: application/json" -H "X-Auth-Token: $TOKEN"`
+echo $KEYPAIRS | cut -d'"' -f12
+echo $KEYPAIRS | cut -d'"' -f16
+echo $KEYPAIRS | cut -d'"' -f26
+echo $KEYPAIRS | cut -d'"' -f30
+
+curl -s "$ENDPOINT/os-keypairs/test" -X DELETE -H "Accept: application/json" -H "X-Auth-Token: $TOKEN"
+KEYPAIR=`curl -s "$ENDPOINT/os-keypairs" -X POST -H "Content-Type: application/json " -H "Accept: application/json" -H "X-Auth-Token: $TOKEN" -d '{"keypair": {"name": "test"}}'`
+echo -e `echo $KEYPAIR | cut -d'"' -f10` > test.pem
+
+KEYPAIRS=`curl -s "$ENDPOINT/os-keypairs" -X GET -H "Accept: application/json" -H "X-Auth-Token: $TOKEN"`
+echo $KEYPAIRS | cut -d'"' -f12
+echo $KEYPAIRS | cut -d'"' -f16
+echo $KEYPAIRS | cut -d'"' -f26
+echo $KEYPAIRS | cut -d'"' -f30
+# echo $KEYPAIRS | python -m json.tool
