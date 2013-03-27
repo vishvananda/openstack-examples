@@ -1,4 +1,4 @@
 Openstack Examples
 ==================
 
-A collection of openstack examples using python clients, cli, and curl
+A collection of openstack examples using python clients, cli, and curl, and jq
