@@ -14,5 +14,5 @@ EOF
 CREDS=`curl -s "$OS_AUTH_URL/tokens" -X POST -H "Content-Type: application/json" -d "$JSON"`
 
 TOKEN=`echo $CREDS | cut -d'"' -f 16`
-TENANT_ID=`echo $CREDS | cut -d'"' -f 28`
-ENDPOINT=`echo $CREDS | cut -d'"' -f 56`
+TENANT_ID=`echo $CREDS | cut -d'"' -f 30`
+ENDPOINT=`echo $CREDS | cut -d'"' -f 54`
